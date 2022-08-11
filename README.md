@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">
-      News Api With Gin & Mongodb & Jwt
+      Url Shortener With Gin & Mongodb & Jwt
   </h1>
   <h3 align="center">
      Version 1.0
