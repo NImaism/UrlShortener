@@ -45,6 +45,6 @@ func Connect() {
 //}
 
 func GetCl(db *mongo.Client, name string) *mongo.Collection {
-	userCollection := db.Database("Nimaism").Collection(name)
+	userCollection := db.Database("Shorterism").Collection(name)
 	return userCollection
 }
