@@ -100,7 +100,8 @@ func RegisterLink(e *gin.Context) {
 		return
 	}
 	fmt.Printf("\n [NewLink] Author : %s | Name : %s | Url : %s \n", TokenData["Email"], Data.Name, Data.Url)
-	e.JSON(200, "localhost:8080/"+Data.Name)
+
+	e.JSON(200, Model.SuccessResponse("localhost:8080/"+Data.Name))
 }
 
 func Link(e *gin.Context) {
