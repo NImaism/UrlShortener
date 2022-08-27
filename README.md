@@ -3,7 +3,7 @@
       Url Shortener With Gin & Mongodb & Jwt
   </h1>
   <h3 align="center">
-     Version 1.0
+     Version 1.1
   </h3>
   <h4 align="center">
       If you would like to report an issue or request a feature. Direct In My <a href="https://instagram.com/nima._.ism">Instagram</a> or create an issue.
