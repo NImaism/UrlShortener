@@ -1,4 +1,4 @@
-package Model
+package model
 
 type HttpResponse struct {
 	ResMessage string

@@ -1,7 +1,7 @@
-package Utility
+package utility
 
 import (
-	"Shorterism/Model"
+	"Shorterism/internal/model"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
@@ -10,7 +10,7 @@ import (
 )
 
 func GenerateToken(Email string) (string, error) {
-	claims := &Model.JwtClaims{
+	claims := &model.JwtClaims{
 		Email,
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(24 * time.Hour).Unix(),
