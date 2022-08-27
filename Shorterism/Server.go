@@ -9,8 +9,6 @@ import (
 
 func main() {
 
-	// By Ilia
-
 	// INIT SERVER
 	Server := gin.Default()
 	database.Connect()
