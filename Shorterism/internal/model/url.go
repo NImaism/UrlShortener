@@ -1,4 +1,4 @@
-package Model
+package model
 
 type Url struct {
 	Name   string      `bson:"Name" json:"Name" validate:"required"`

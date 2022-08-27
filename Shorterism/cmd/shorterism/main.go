@@ -1,27 +1,34 @@
 package main
 
 import (
-	database "Shorterism/Database"
-	"Shorterism/Routing"
+	"Shorterism/internal/database"
+	"Shorterism/internal/handler"
+	"Shorterism/internal/store"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"log"
+	"os"
 )
 
 func main() {
+	logger, err := zap.NewDevelopment()
+	if err != nil {
+		log.Fatalln(err)
+	}
 
-	// By Ilia
+	server := gin.Default()
 
-	// INIT SERVER
-	Server := gin.Default()
-	database.Connect()
+	mongodb := database.New()
 
-	// SET LIMIT
+	hnd := handler.App{
+		Store:  store.New(mongodb),
+		Logger: logger.Named("Handler.App"),
+	}
 
-	// SET ROUTING
-	Routing.SetRouting(Server)
+	hnd.SetRouting(server)
 
 	// RUN SERVER
-	if err := Server.Run(":8080"); err != nil {
-		log.Fatalln(err)
+	if err := server.Run(os.Args[1]); err != nil {
+		logger.Fatal("Can't run server", zap.Error(err))
 	}
 }

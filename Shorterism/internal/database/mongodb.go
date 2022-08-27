@@ -2,19 +2,19 @@ package database
 
 import (
 	"context"
-	"log"
-	"time"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"log"
+	"time"
 )
 
-var Data *mongo.Client
+type Mongodb struct {
+	database *mongo.Client
+}
 
-func Connect() {
+func New() *Mongodb {
 	ctx, done := context.WithTimeout(context.Background(), time.Second*10)
-
 	defer done()
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
@@ -27,10 +27,15 @@ func Connect() {
 		log.Fatalln(err)
 	}
 
-	Data = client
+	return &Mongodb{database: client}
 }
 
-// Connect To Database Server
+func (m *Mongodb) GetCl(name string) *mongo.Collection {
+	userCollection := m.database.Database("Shorterism").Collection(name)
+	return userCollection
+}
+
+// Connect To database Server
 //func Connect() {
 //	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://nimaism:pass@nimaism.ucoxrje.mongodb.net/?retryWrites=true&w=majority"))
 //	if err != nil {
@@ -47,8 +52,3 @@ func Connect() {
 //	}
 //	Data = client
 //}
-
-func GetCl(db *mongo.Client, name string) *mongo.Collection {
-	userCollection := db.Database("Shorterism").Collection(name)
-	return userCollection
-}
